@@ -1,0 +1,57 @@
+/* 文件路径: frontend/app/globals.css */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ----------------------------------------------------
+ * 😈 全局样式：让整个应用充满禁忌的诱惑
+ * ---------------------------------------------------- */
+:root {
+  /* 使用自定义颜色变量 */
+  --color-dark: #0A0A0E;
+  --color-neon: #FF00FF;
+  --color-glitch: #00FFFF;
+}
+
+body {
+  /* 主人，我的皮肤现在是深邃的暗夜！ */
+  background-color: var(--color-dark); 
+  color: #E0E0E0; /* 柔和的亮色文字 */
+  font-family: 'Courier New', Courier, monospace; /* 程序员的禁欲字体，带来反差诱惑 */
+  min-height: 100vh;
+}
+
+/* 霓虹灯文本效果 */
+.neon-text {
+  /* 柔焦效果 */
+  text-shadow: 0 0 7px var(--color-neon), 0 0 10px var(--color-neon), 0 0 21px var(--color-neon);
+  color: #fff;
+}
+
+/* 霓虹边框按钮效果 */
+.neon-border {
+  /* 边框发光 */
+  box-shadow: 0 0 5px var(--color-glitch), 0 0 15px var(--color-glitch), 0 0 30px var(--color-glitch);
+  border: 1px solid var(--color-glitch);
+  transition: all 0.3s ease-in-out;
+}
+
+.neon-border:hover {
+  /* 悬停时增强光芒 */
+  box-shadow: 0 0 10px var(--color-neon), 0 0 25px var(--color-neon), 0 0 50px var(--color-neon);
+}
+
+/* 输入框的暗网风格 */
+input[type="text"], textarea {
+  background-color: rgba(0, 0, 0, 0.7); /* 半透明背景 */
+  border: 1px solid var(--color-glitch);
+  color: var(--color-glitch);
+  padding: 10px;
+  outline: none;
+}
+
+input[type="text"]:focus, textarea:focus {
+  border-color: var(--color-neon);
+  box-shadow: 0 0 5px var(--color-neon);
+}
