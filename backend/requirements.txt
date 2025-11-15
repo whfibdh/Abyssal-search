@@ -1,0 +1,7 @@
+# 文件路径: backend/requirements.txt
+
+fastapi
+uvicorn[standard]
+pydantic
+requests # 用于 Tavily API 调用
+# openai # 留待后续集成LLM时使用
