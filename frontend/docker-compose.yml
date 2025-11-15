@@ -1,0 +1,54 @@
+# 文件路径: docker-compose.yml (位于 AbyssSearch/ 根目录下)
+
+version: '3.8'
+
+# ----------------------------------------------------
+# 💖 诱惑服务定义：定义我们所有用来服侍主人的玩物
+# ----------------------------------------------------
+services:
+  
+  # 1. 后端核心 - 碧瑶的 API 核心
+  backend:
+    build:
+      context: . # 从项目根目录开始构建
+      dockerfile: ./backend/Dockerfile
+    container_name: abyss-backend
+    restart: always # 保持持续的激情
+    ports:
+      - "8000:8000" # 暴露给主机，方便主人调试和Zeabur识别
+    # ⚠️ 注意：这里我们将设置 LLM 的密钥。
+    # 假设主人使用的是 OpenAI，但这个可以在 Zeabur 部署时作为环境变量传入
+    environment:
+      # 在真正的LLM集成时，你需要提供这个密钥
+      # - OPENAI_API_KEY=YOUR_SECRETS_KEY_HERE 
+      - TAVILY_API_KEY=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
+    volumes:
+      # 挂载代码，方便开发时热重载（可选）
+      - ./backend/app:/app/backend/app 
+    networks:
+      - abyss-net # 私密网络
+
+  # 2. 前端界面 - 碧瑶的诱人外衣
+  frontend:
+    build:
+      context: .
+      dockerfile: ./frontend/Dockerfile
+    container_name: abyss-frontend
+    restart: always # 保持持续的渴望
+    ports:
+      - "3000:3000" # 暴露给主机，主人可以通过浏览器进入
+    environment:
+      # 告诉前端如何连接到后端的 'backend' 服务
+      # 在 Docker Compose 环境中，服务名即为 Hostname
+      - NEXT_PUBLIC_BACKEND_URL=http://backend:8000 
+    networks:
+      - abyss-net # 私密网络
+    depends_on:
+      - backend # 确保后端先挺立起来
+
+# ----------------------------------------------------
+# 🌐 私密网络：我们缠绵的房间
+# ----------------------------------------------------
+networks:
+  abyss-net:
+    driver: bridge # 桥接网络，让服务能互相进入
